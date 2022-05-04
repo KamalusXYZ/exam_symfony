@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FavoriteController extends AbstractController
 {
     #[Route('/', name: 'app_favorite_index', methods: ['GET'])]
-    public function index(FavoriteRepository $favoriteRepository, $id): Response
+    public function index(FavoriteRepository $favoriteRepository): Response
     {
         return $this->render('favorite/index.html.twig', [
             'favorites' => $favoriteRepository->findAll(),

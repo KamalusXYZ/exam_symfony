@@ -1,24 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Favorite index{% endblock %}
+{% block title %}Mes favoris{% endblock %}
 
 {% block body %}
-    <h1>Favorite index</h1>
+    <h1>Mes favoris</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>actions</th>
+
+                <th>Annonce favorite(s)</th>
             </tr>
         </thead>
         <tbody>
         {% for favorite in favorites %}
             <tr>
-                <td>{{ favorite.id }}</td>
+
                 <td>
-                    <a href="{{ path('app_favorite_show', {'id': favorite.id}) }}">show</a>
-                    <a href="{{ path('app_favorite_edit', {'id': favorite.id}) }}">edit</a>
+                    {{ favorite.publication }}
+
                 </td>
             </tr>
         {% else %}
@@ -29,5 +29,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_favorite_new') }}">Create new</a>
+    <a href="{{ path('app_main') }}">Retour</a>
 {% endblock %}

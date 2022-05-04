@@ -45,6 +45,7 @@ class PublicationController extends AbstractController
     {
         return $this->render('publication/show.html.twig', [
             'publication' => $publication,
+            'id'=> $id
 
         ]);
     }

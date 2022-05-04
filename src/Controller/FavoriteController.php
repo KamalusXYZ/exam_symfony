@@ -15,10 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class FavoriteController extends AbstractController
 {
     #[Route('/', name: 'app_favorite_index', methods: ['GET'])]
-    public function index(FavoriteRepository $favoriteRepository): Response
+    public function index(FavoriteRepository $favoriteRepository, $id): Response
     {
         return $this->render('favorite/index.html.twig', [
             'favorites' => $favoriteRepository->findAll(),
+
         ]);
     }
 
@@ -76,7 +77,7 @@ class FavoriteController extends AbstractController
     }
 
     #[Route('/{id}/signup', name: 'app_signup')]
-    public function setFavorite(FavoriteRepository $favoriteRepository, Publication $publication): Response
+    public function setFavorite(FavoriteRepository $favoriteRepository, Publication $publication, $id): Response
     {
         $user = $this->getUser();
 
@@ -85,17 +86,17 @@ class FavoriteController extends AbstractController
 
         if($publication->isFavorite($user)){
             $bookmark =  $favoriteRepository->findOneBy(
-                ['users'=>$user, 'publications'=>$publication]
+                ['user'=>$user, 'publication'=>$publication]
             );
             $favoriteRepository->remove($bookmark);
-            return $this->redirectToRoute('app_main');
+            return $this->redirectToRoute('app_publication_show',['id'=>$id]);
 
         }
 
-        $bookmark = new FavoriteRepository();
-        $bookmark->setUsers($user)->setEvents($publication);
+        $bookmark = new Favorite();
+        $bookmark->setUser($user)->setPublication($publication);
         $favoriteRepository->add($bookmark);
-        return $this->redirectToRoute('app_main');
+        return $this->redirectToRoute('app_publication_show',['id'=>$id]);
 
 
 

@@ -60,7 +60,7 @@ class Publication
     public function isFavorite(User $user): bool
     {
         foreach ($this->favorites as $favorite) {
-            if ($favorite->getUsers() === $user) return true;
+            if ($favorite->getUser() === $user) return true;
         }
         return false;
     }

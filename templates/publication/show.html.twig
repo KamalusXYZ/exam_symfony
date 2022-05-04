@@ -21,9 +21,9 @@
 
                     {% if publication.isFavorite(app.user) %}
                         <a class="btn btn-danger m-2"
-                           href="{{ path('app_signup', {'id': publication.id}) }}">Ajouter aux favoris</a>
+                           href="{{ path('app_signup', {'id': publication.id}) }}">Retirer des favoris</a>
                     {% else %}
-                        <a class="btn btn-success m-2" href="{{ path('app_signup', {'id': publication.id}) }}">Retirer des favoris</a>
+                        <a class="btn btn-success m-2" href="{{ path('app_signup', {'id': publication.id}) }}">Ajouter aux favoris</a>
 
                     {% endif %}
 

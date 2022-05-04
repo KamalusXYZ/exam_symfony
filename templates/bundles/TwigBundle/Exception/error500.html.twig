@@ -1,0 +1,10 @@
+{# templates/bundles/TwigBundle/Exception/error500.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cette page est indisponible, veuillez réesseyer plus tard</h1>
+
+    <p>
+       Revenez plus tard <a href="{{ path('homepage') }}">return to the homepage</a>.
+    </p>
+{% endblock %}

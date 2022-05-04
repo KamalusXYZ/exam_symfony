@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publication index{% endblock %}
+
+{% block body %}
+    <h1>Publication index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Model</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>ReleaseYear</th>
+                <th>Km</th>
+                <th>FuelType</th>
+                <th>NeedLicense</th>
+                <th>Picture</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for publication in publications %}
+            <tr>
+                <td>{{ publication.id }}</td>
+                <td>{{ publication.title }}</td>
+                <td>{{ publication.description }}</td>
+                <td>{{ publication.model }}</td>
+                <td>{{ publication.brand }}</td>
+                <td>{{ publication.price }}</td>
+                <td>{{ publication.releaseYear ? publication.releaseYear|date('Y-m-d') : '' }}</td>
+                <td>{{ publication.km }}</td>
+                <td>{{ publication.fuelType }}</td>
+                <td>{{ publication.needLicense ? 'Yes' : 'No' }}</td>
+                <td>{{ publication.picture }}</td>
+                <td>
+                    <a href="{{ path('app_publication_show', {'id': publication.id}) }}">show</a>
+                    <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_publication_new') }}">Create new</a>
+{% endblock %}

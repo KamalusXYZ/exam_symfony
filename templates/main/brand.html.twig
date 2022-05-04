@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vendez votre voiture | site {% endblock %}
+
+{% block body %}
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Acceuil</a>
+        </li>
+
+        {% if app.user == false %}
+            <li><a class="nav-link text-decoration-none text-secondary" href="{{ path('app_login') }}">Se connecter</a>
+            </li>
+        {% endif %}
+
+        {% if app.user %}
+            <li><a class="nav-link text-decoration-none text-danger" href="{{ path('app_login') }}"> Se déconnecter </a>
+            </li>
+        {% endif %}
+        <li>
+            {% if app.user %}
+
+            <a class="nav-link text-decoration-none text-success" href="{{ path('app_publication_new') }}">Publier une
+                annonce</a> </li>
+        {% endif %}
+
+    </ul>
+
+    <h1 class="text-center text-primary m-3">Trouvez votre voiture simplement sur notre site!</h1>
+
+    <div class="d-flex">
+
+        {% for publication in publications %}
+            <div class="card m-2" style="width: 18rem;">
+                {#        <img src="..." class="card-img-top" alt="..."> #}
+                <div class="card-body">
+                    <h5 class="card-title">{{ publication.title }}</h5>
+                    <p class="card-text">{{ publication.description }}</p>
+                    <p class="card-text"> Modèle:<span
+                                class="fw-bold text-capitalize text-success"> {{ publication.model }}</span></p>
+                    <p class="card-text"> Marque:<span
+                                class="fw-bold text-capitalize text-success"> {{ publication.brand }}</span></p>
+
+
+                    <a href="{{path('app_publication_show', {'id': publication.id})}}" class="btn btn-primary">Voir l'annonce</a>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{# templates/bundles/TwigBundle/Exception/error403.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Vous n'avez pas les droits pour acceder à cette page</h1>
+
+    <p>
+        Vérifiez ou retournez à l'acceuil <a href="{{ path('homepage') }}">retour</a>.
+    </p>
+{% endblock %}

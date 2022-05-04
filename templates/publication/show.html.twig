@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publication{% endblock %}
+
+{% block body %}
+    <h1>{{ publication.title }}</h1>
+
+
+    <div class="card mb-3">
+{#        <img src="..." class="card-img-top" alt="...">#}
+        <div class="card-body">
+
+            <p class="card-text"><span class="fw-bold" >Description:</span> {{ publication.description }}</p>
+            <p class="card-text text-capitalize"><span class="fw-bold">Marque:</span> {{ publication.brand }} <span class="fw-bold">Modèle:</span>  {{ publication.model }} </p>
+{#            <p class="card-text">{{ publication.releaseYear }}</p>#}
+            <p class="card-text  fw-bold">Prix:  <span class="card-text text-success fw-bold"> {{ publication.price }} €</span></p>
+            <p class="card-text"><span class="fw-bold">Permis obligatoire:</span> {{ publication.needLicense ? 'Oui' : 'Non' }}</p>
+            <p class="card-text"><span class="fw-bold">Nombre de kilomètres au compteur: </span>{{ publication.km }}</p>
+            <p class="card-text"><span class="fw-bold">Type de carburant: </span>{{ publication.km }}</p>
+            <p>{% if app.user %}
+
+                    {% if publication.isFavorite(app.user) %}
+                        <a class="btn btn-danger m-2"
+                           href="{{ path('app_signup', {'id': publication.id}) }}">Ajouter aux favoris</a>
+                    {% else %}
+                        <a class="btn btn-success m-2" href="{{ path('app_signup', {'id': publication.id}) }}">Retirer des favoris</a>
+
+                    {% endif %}
+
+                {% endif %}</p>
+
+        </div>
+    </div>
+
+
+
+
+    <a href="{{ path('app_main') }}">Retour à l'acceuil</a>
+
+    <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">éditer</a>
+
+    {{ include('publication/_delete_form.html.twig') }}
+{% endblock %}
